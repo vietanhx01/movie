@@ -29,4 +29,4 @@ def delete_movie(movie_id):
 
 @app.get('/rooms')
 def rooms():
-    return RoomModel.select()
+    return RoomModel.get_rooms_with_seats()
