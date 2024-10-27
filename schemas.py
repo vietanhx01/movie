@@ -21,13 +21,13 @@ class Movie(Schema):
 
 class Room(Schema):
     room_number: int
-    seat_id: int
     capacity: int
     screen_type: str
     location: str
 
 class Seat(Schema):
     seat_number: str
+    room_id: int
     is_vip: bool
     is_available: bool
 
