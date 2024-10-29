@@ -14,7 +14,7 @@ class Movie(Schema):
     age_rating: int
     duration: int
     genre: str
-    director_id: int
+    director: str
     caster: str
     rating: float
     language: str

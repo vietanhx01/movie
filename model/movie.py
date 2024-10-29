@@ -1,5 +1,4 @@
 import datetime
-from model.director import Director
 from peewee import Model, TextField, DateField, IntegerField, FloatField, ForeignKeyField, JOIN, fn
 
 from model.base import BaseModel
@@ -14,7 +13,7 @@ class Movie(BaseModel):
     age_rating = IntegerField(null=False)
     duration = IntegerField(null=False)
     genre = TextField(null=False)
-    director_id = ForeignKeyField(Director, column_name="director_id")
+    director = TextField(null=False)
     caster = TextField(null=False)
     rating = FloatField(null=False)
     language = TextField(null=False)
@@ -22,33 +21,20 @@ class Movie(BaseModel):
     @classmethod
     def get_list(cls):
         query = cls.select(
+            cls.id,
             cls.name,
             cls.poster_url,
             cls.release_date,
             cls.age_rating,
             cls.genre,
-            cls.rating,
-            # Director.name.alias('director_name'),
-            fn.jsonb_build_object(
-                "id",
-                Director.id,
-                "name",
-                Director.name,
-                "mail",
-                Director.mail,
-                "address",
-                Director.address,
-                "phone",
-                Director.phone,
-            ).alias("director"),
-        ).join(Director, JOIN.LEFT_OUTER, on=cls.director_id==Director.id).dicts()
+            cls.rating).dicts()
 
         print(query)
         return list(query)
 
     @classmethod
-    def get_list_by_id(cls, id):
-        query = cls.select().where(cls.id == id).dicts()
+    def get_movie_by_id(cls, movie_id : int):
+        query = cls.select().where(cls.id == movie_id).dicts()
         return list(query)
 
     @classmethod

@@ -1,5 +1,4 @@
-from dns.e164 import query
-from peewee import Model, TextField, IntegerField, ForeignKeyField, BooleanField
+from peewee import TextField, ForeignKeyField, BooleanField
 from model.base import BaseModel
 from model.room import Room
 

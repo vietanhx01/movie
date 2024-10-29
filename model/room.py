@@ -1,5 +1,4 @@
-from peewee import TextField, IntegerField, JOIN, fn, \
-    ForeignKeyField
+from peewee import TextField, IntegerField, JOIN, fn
 from model.base import BaseModel
 
 class Room(BaseModel):
@@ -19,6 +18,7 @@ class Room(BaseModel):
             .dicts())"""
 
         query = cls.select(
+            cls.id,
             cls.room_number,
             cls.capacity,
             cls.screen_type,

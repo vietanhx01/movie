@@ -1,10 +1,6 @@
-from dns.e164 import query
-
-from config import db
 from model.movie import Movie
 from model.room import Room
-from peewee import Model, DateTimeField, AutoField, TextField, DateField, IntegerField, FloatField, PostgresqlDatabase, JOIN, fn, \
-    ForeignKeyField
+from peewee import DateTimeField, IntegerField, JOIN, fn, ForeignKeyField
 from model.base import BaseModel
 
 class Showtime(BaseModel):
@@ -15,7 +11,8 @@ class Showtime(BaseModel):
     end_time = DateTimeField(null=False)
     price = IntegerField(null=False)
 
-    def get_showtimes(cls):
+    @classmethod
+    def get_show_times(cls):
         query = cls.select(
             fn.jsonb_build_object(
                 "name", Movie.name,
@@ -31,4 +28,4 @@ class Showtime(BaseModel):
         .dicts()
 
         print(query)
-        return query
+        return list(query)

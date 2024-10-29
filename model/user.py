@@ -1,8 +1,5 @@
-import datetime
-from config import db
-from peewee import Model, AutoField, TextField, DateField, IntegerField, FloatField, PostgresqlDatabase
+from peewee import TextField
 from model.base import BaseModel
-
 
 class Director(BaseModel):
 
