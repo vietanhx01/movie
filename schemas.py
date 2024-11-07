@@ -37,3 +37,9 @@ class Showtime(Schema):
     start_time: datetime.datetime
     end_time: datetime.datetime
     price: int
+
+class User(Schema):
+    name: str
+    email: str
+    address: str
+    phone: str

@@ -34,8 +34,8 @@ class Movie(BaseModel):
 
     @classmethod
     def get_movie_by_id(cls, movie_id : int):
-        query = cls.select().where(cls.id == movie_id).dicts()
-        return list(query)
+        query = cls.select().where(cls.id == movie_id).dicts().get_or_none()
+        return query
 
     @classmethod
     def create_movie(cls, movie_data: dict):

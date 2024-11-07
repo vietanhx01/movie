@@ -12,6 +12,12 @@ class Showtime(BaseModel):
     price = IntegerField(null=False)
 
     @classmethod
+    def add_show_time(cls, show_time_data: dict):
+        show_time = cls.create(**show_time_data)
+        return show_time
+
+
+    @classmethod
     def get_show_times(cls):
         query = cls.select(
             fn.jsonb_build_object(
